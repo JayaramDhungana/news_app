@@ -29,6 +29,6 @@ class CategoryWiseNewsProvider extends ChangeNotifier {
   }
 }
 
-final categoryWiseNewsProvider = ChangeNotifierProvider((res) {
+final categoryWiseNewsProvider = ChangeNotifierProvider((ref) {
   return CategoryWiseNewsProvider();
 });

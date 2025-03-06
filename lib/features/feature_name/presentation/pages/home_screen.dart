@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/pages/all_news_screen.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/pages/category_wise_news_screen.dart';
+import 'package:news_using_clean_architecture/features/feature_name/presentation/pages/favourite_news_screen.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/text_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -33,7 +34,17 @@ class _HomeScreenState extends State<HomeScreen>
               width: 110,
             ),
             Spacer(),
-            Icon(Icons.favorite, color: Colors.red, size: 40),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FavouriteNewsScreen(),
+                  ),
+                );
+              },
+              icon: Icon(Icons.favorite, color: Colors.red, size: 40),
+            ),
             Container(
               decoration: BoxDecoration(color: Colors.grey[200]),
               child: Icon(Icons.notifications_none_sharp, size: 40),

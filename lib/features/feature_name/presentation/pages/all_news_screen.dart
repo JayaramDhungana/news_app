@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/all_news_provider.dart';
+import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/favourite_news_provider.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/text_widget.dart';
 
 class AllNewsScreen extends ConsumerStatefulWidget {
@@ -21,11 +22,19 @@ class _AllNewsScreenState extends ConsumerState<AllNewsScreen> {
   @override
   Widget build(BuildContext context) {
     final allNewsFromProvider = ref.watch(allNewsProvider);
+    final favouriteNewsFromProvider = ref.watch(favouriteNewsProvider);
     return Scaffold(
       body: ListView.builder(
         itemCount: allNewsFromProvider.allNews.length,
         itemBuilder: (context, index) {
           final allNewsDetails = allNewsFromProvider.allNews[index];
+          //if news is already added to the favourte then this fucntion check the
+          //title is added or not. then it return true if news is added to the favorite
+          //otherwise it return false values.
+          bool isFavourite = favouriteNewsFromProvider.favouriteNews.any(
+            (element) => element.title == allNewsDetails.title,
+          );
+
           return ListTile(
             leading: Image(
               image: NetworkImage(
@@ -52,7 +61,7 @@ class _AllNewsScreenState extends ConsumerState<AllNewsScreen> {
                 ),
               ],
             ),
-            //List Tile ko last row ma author ko name dekhanue ra 
+            //List Tile ko last row ma author ko name dekhanue ra
             //publsihed data dekhayeko overflow handle sahit
             subtitle: Row(
               children: [
@@ -68,7 +77,7 @@ class _AllNewsScreenState extends ConsumerState<AllNewsScreen> {
                   ),
                 ),
                 Spacer(),
-                
+
                 SizedBox(
                   width: 75,
                   child: TextWidget(
@@ -82,6 +91,46 @@ class _AllNewsScreenState extends ConsumerState<AllNewsScreen> {
                   ),
                 ),
               ],
+            ),
+            trailing: IconButton(
+              onPressed: () {
+                //add to the favourite news List if not added to the favorite
+                if (isFavourite == false) {
+                  ref
+                      .read(favouriteNewsProvider)
+                      .addToFavouriteNews(
+                        allNewsDetails.name ?? "No name",
+                        allNewsDetails.author ?? "No author",
+                        allNewsDetails.title ?? "No title",
+                        allNewsDetails.description ?? "No Description",
+                        allNewsDetails.urlToImage ??
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRLZ85F5Fe-UW2jTPyf76BbnpmWY_a_ZBfzA&s",
+                        allNewsDetails.publishedAt ?? "No Published Date",
+                      );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("Added Successfully"),
+                      backgroundColor: Colors.green,
+                      duration: Duration(seconds: 1),
+                    ),
+                  );
+                } else {
+                  ref
+                      .read(favouriteNewsProvider)
+                      .deleteFavouriteNews(allNewsDetails.title ?? " No title");
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("Deleted Successfully"),
+                      backgroundColor: Colors.red,
+                       duration: Duration(seconds: 1),
+                    ),
+                  );
+                }
+              },
+              icon: Icon(
+                isFavourite ? Icons.favorite : Icons.favorite_outline,
+                color: isFavourite ? Colors.red : Colors.black,
+              ),
             ),
           );
         },
