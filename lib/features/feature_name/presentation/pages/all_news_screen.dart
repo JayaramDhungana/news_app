@@ -37,6 +37,7 @@ class _AllNewsScreenState extends ConsumerState<AllNewsScreen> {
             ),
             //Title ma news ko name ra Title dekhauna ko la
             title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWidget(
                   text: allNewsDetails.name ?? "No Name",
@@ -47,6 +48,38 @@ class _AllNewsScreenState extends ConsumerState<AllNewsScreen> {
                   text: allNewsDetails.title ?? "No title",
                   color: Colors.black,
                   size: 15,
+                  isBold: true,
+                ),
+              ],
+            ),
+            //List Tile ko last row ma author ko name dekhanue ra 
+            //publsihed data dekhayeko overflow handle sahit
+            subtitle: Row(
+              children: [
+                SizedBox(
+                  width: 100,
+
+                  child: TextWidget(
+                    text: allNewsDetails.author ?? "No Author",
+                    color: Colors.black,
+                    size: 12,
+                    isOverFlow: true,
+                    maxlines: 1,
+                  ),
+                ),
+                Spacer(),
+                
+                SizedBox(
+                  width: 75,
+                  child: TextWidget(
+                    text:
+                        allNewsDetails.publishedAt ??
+                        "No published date Details",
+                    color: Colors.black,
+                    size: 12,
+                    isOverFlow: true,
+                    maxlines: 1,
+                  ),
                 ),
               ],
             ),
