@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_using_clean_architecture/features/feature_name/presentation/pages/more_details_news_screen.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/category_wise_news_provider.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/favourite_news_provider.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/text_widget.dart';
@@ -36,6 +37,23 @@ class _CategoryWiseNewsScreenState
             (element) => element.title == categoryWiseNewsDetails.title,
           );
           return ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder:
+                      (context) => MoreDetailsNewsScreen(
+                        name: categoryWiseNewsDetails.name,
+                        publishedAt: categoryWiseNewsDetails.publishedAt,
+                        urlToImage: categoryWiseNewsDetails.urlToImage,
+                        author: categoryWiseNewsDetails.author,
+                        title: categoryWiseNewsDetails.title,
+                        description: categoryWiseNewsDetails.description,
+                        content: categoryWiseNewsDetails.content,
+                      ),
+                ),
+              );
+            },
             //News ko Image
             leading: Image(
               image: NetworkImage(
@@ -107,11 +125,11 @@ class _CategoryWiseNewsScreenState
                         categoryWiseNewsDetails.publishedAt ??
                             "No Published Date",
                       );
-                        ScaffoldMessenger.of(context).showSnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text("Added Successfully"),
                       backgroundColor: Colors.green,
-                       duration: Duration(seconds: 1),
+                      duration: Duration(seconds: 1),
                     ),
                   );
                 } else {
@@ -120,11 +138,11 @@ class _CategoryWiseNewsScreenState
                       .deleteFavouriteNews(
                         categoryWiseNewsDetails.title ?? " No title",
                       );
-                        ScaffoldMessenger.of(context).showSnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text("Deleted Successfully"),
                       backgroundColor: Colors.red,
-                       duration: Duration(seconds: 1),
+                      duration: Duration(seconds: 1),
                     ),
                   );
                 }
