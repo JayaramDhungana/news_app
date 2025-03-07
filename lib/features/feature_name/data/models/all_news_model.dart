@@ -14,6 +14,7 @@ class AllNewsModel {
   final String? description;
   final String? urlToImage;
   final String? publishedAt;
+  final String? content;
 
   AllNewsModel({
     required this.name,
@@ -22,6 +23,7 @@ class AllNewsModel {
     required this.description,
     required this.urlToImage,
     required this.publishedAt,
+    required this.content,
   });
 
   factory AllNewsModel.fromJson(Map<String, dynamic> json) {
@@ -32,6 +34,7 @@ class AllNewsModel {
       description: json['description'],
       urlToImage: json['urlToImage'],
       publishedAt: json['publishedAt'],
+      content: json['content'],
     );
   }
 }

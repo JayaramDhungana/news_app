@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_using_clean_architecture/features/feature_name/presentation/pages/more_details_news_screen.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/all_news_provider.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/favourite_news_provider.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/text_widget.dart';
@@ -36,6 +37,23 @@ class _AllNewsScreenState extends ConsumerState<AllNewsScreen> {
           );
 
           return ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder:
+                      (context) => MoreDetailsNewsScreen(
+                        name: allNewsDetails.name,
+                        publishedAt: allNewsDetails.publishedAt,
+                        urlToImage: allNewsDetails.urlToImage,
+                        author: allNewsDetails.author,
+                        title: allNewsDetails.title,
+                        description: allNewsDetails.description,
+                        content: allNewsDetails.content,
+                      ),
+                ),
+              );
+            },
             leading: Image(
               image: NetworkImage(
                 allNewsDetails.urlToImage ??
@@ -122,7 +140,7 @@ class _AllNewsScreenState extends ConsumerState<AllNewsScreen> {
                     SnackBar(
                       content: Text("Deleted Successfully"),
                       backgroundColor: Colors.red,
-                       duration: Duration(seconds: 1),
+                      duration: Duration(seconds: 1),
                     ),
                   );
                 }
