@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/pages/all_news_screen.dart';
+import 'package:news_using_clean_architecture/features/feature_name/presentation/pages/category_wise_news_screen.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/text_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -87,13 +88,13 @@ class _HomeScreenState extends State<HomeScreen>
               controller: _tabController,
               children: [
                 AllNewsScreen(),
-                Text("b"),
-                Text("b"),
-                Text("b"),
-                Text("b"),
-                Text("b"),
-                Text("b"),
-                Text("b"),
+                CategoryWiseNewsScreen("business"),
+                CategoryWiseNewsScreen("entertainment"),
+                CategoryWiseNewsScreen("general"),
+                CategoryWiseNewsScreen("health"),
+                CategoryWiseNewsScreen("science"),
+                CategoryWiseNewsScreen("sports"),
+                CategoryWiseNewsScreen("technology"),
               ],
             ),
           ),

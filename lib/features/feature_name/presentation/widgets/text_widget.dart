@@ -28,7 +28,7 @@ class TextWidget extends StatelessWidget {
       ),
 
       overflow: isOverFlow ? TextOverflow.ellipsis : null,
-      maxLines: isOverFlow ? maxlines : null,
+      maxLines: maxlines,
     );
   }
 }
