@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/pages/more_details_news_screen.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/category_wise_news_provider.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/favourite_news_provider.dart';
+import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/calculate_date_difference.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/text_widget.dart';
 
 class CategoryWiseNewsScreen extends ConsumerStatefulWidget {
@@ -36,6 +37,11 @@ class _CategoryWiseNewsScreenState
           bool isFavourite = favouriteNewsFromProvider.favouriteNews.any(
             (element) => element.title == categoryWiseNewsDetails.title,
           );
+          //Yo dateDifference bhanne function le chai yehabata published at bhanne
+          //data leyera gayera kati din ago ho tyo return gardinxa
+          String dateDifference = calculateDateDifference(
+            publishedAt: categoryWiseNewsDetails.publishedAt ?? "0",
+          );
           return ListTile(
             onTap: () {
               Navigator.push(
@@ -44,7 +50,7 @@ class _CategoryWiseNewsScreenState
                   builder:
                       (context) => MoreDetailsNewsScreen(
                         name: categoryWiseNewsDetails.name,
-                        publishedAt: categoryWiseNewsDetails.publishedAt,
+                        publishedAt: dateDifference,
                         urlToImage: categoryWiseNewsDetails.urlToImage,
                         author: categoryWiseNewsDetails.author,
                         title: categoryWiseNewsDetails.title,
@@ -99,9 +105,9 @@ class _CategoryWiseNewsScreenState
                 SizedBox(
                   width: 65,
                   child: TextWidget(
-                    text:
-                        categoryWiseNewsDetails.publishedAt ??
-                        "No Published date",
+                    text: dateDifference,
+                    // categoryWiseNewsDetails.publishedAt ??
+                    // "No Published date",
                     color: Colors.black,
                     size: 12,
                     isOverFlow: true,
