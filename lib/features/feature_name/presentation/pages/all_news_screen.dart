@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/calculate_date_difference.dart';
+import 'package:timeago/timeago.dart' as timeago;
+
 import 'package:news_using_clean_architecture/features/feature_name/presentation/pages/more_details_news_screen.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/all_news_provider.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/favourite_news_provider.dart';
@@ -24,6 +27,7 @@ class _AllNewsScreenState extends ConsumerState<AllNewsScreen> {
   Widget build(BuildContext context) {
     final allNewsFromProvider = ref.watch(allNewsProvider);
     final favouriteNewsFromProvider = ref.watch(favouriteNewsProvider);
+
     return Scaffold(
       body: ListView.builder(
         itemCount: allNewsFromProvider.allNews.length,
@@ -35,6 +39,9 @@ class _AllNewsScreenState extends ConsumerState<AllNewsScreen> {
           bool isFavourite = favouriteNewsFromProvider.favouriteNews.any(
             (element) => element.title == allNewsDetails.title,
           );
+          String dateDifference = calculateDateDifference(
+            publishedAt: allNewsDetails.publishedAt ?? "0",
+          );
 
           return ListTile(
             onTap: () {
@@ -44,7 +51,9 @@ class _AllNewsScreenState extends ConsumerState<AllNewsScreen> {
                   builder:
                       (context) => MoreDetailsNewsScreen(
                         name: allNewsDetails.name,
-                        publishedAt: allNewsDetails.publishedAt,
+                        publishedAt: calculateDateDifference(
+                          publishedAt: allNewsDetails.publishedAt ?? "0",
+                        ),
                         urlToImage: allNewsDetails.urlToImage,
                         author: allNewsDetails.author,
                         title: allNewsDetails.title,
@@ -98,10 +107,11 @@ class _AllNewsScreenState extends ConsumerState<AllNewsScreen> {
 
                 SizedBox(
                   width: 75,
+
                   child: TextWidget(
-                    text:
-                        allNewsDetails.publishedAt ??
-                        "No published date Details",
+                    text: dateDifference,
+                    // allNewsDetails.publishedAt ??
+                    // "No published date Details",
                     color: Colors.black,
                     size: 12,
                     isOverFlow: true,
