@@ -10,7 +10,7 @@ String calculateDateDifference({required String publishedAt}) {
   // Calculate the difference in hours
   Duration difference = currentTime.difference(publishedDate);
 
-  // If the difference is less than 24 hours, display hours ago
+ 
   if (difference.inHours < 24) {
     // Show the exact number of hours ago
     if (difference.inHours == 1) {

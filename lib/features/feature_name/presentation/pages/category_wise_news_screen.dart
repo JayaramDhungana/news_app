@@ -21,7 +21,7 @@ class _CategoryWiseNewsScreenState
   void initState() {
     // TODO: implement initState
     super.initState();
-    ref.read(categoryWiseNewsProvider).FetchCategoryWiseNews(widget.category);
+    ref.read(categoryWiseNewsProvider).fetchCategoryWiseNews(widget.category);
   }
 
   @override

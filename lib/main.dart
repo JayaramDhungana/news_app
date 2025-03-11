@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/pages/home_screen.dart';
+import 'package:news_using_clean_architecture/features/feature_name/presentation/pages/posts_showing_screen.dart';
 
 void main() {
   runApp(ProviderScope(child: const MyApp()));
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(color: Colors.blue, centerTitle: true),
         dialogTheme: DialogTheme(backgroundColor: Colors.purple),
       ),
-      home: const HomeScreen(),
+      home: const PostsShowingScreen(),
     );
   }
 }

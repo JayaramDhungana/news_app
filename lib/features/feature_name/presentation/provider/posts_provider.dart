@@ -24,8 +24,17 @@ class PostsProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+   PostsModel getPostById(int postId) {
+    return posts.firstWhere((post) => post.id == postId, orElse: () => throw Exception('Post not found'));
+  }
 }
 
 final postsProvider = ChangeNotifierProvider<PostsProvider>((e) {
   return PostsProvider();
 });
+
+// favoritePostsProvider ko declaration
+final favoritePostsProvider = StateProvider<Map<int, bool>>((ref) {
+  return {}; // Initial empty map
+});
+
