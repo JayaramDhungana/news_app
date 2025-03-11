@@ -8,7 +8,7 @@ class CategoryWiseNewsProvider extends ChangeNotifier {
 
   List<CategoryWiseNewsModel> categoryWiseNews = [];
 
-  Future<void> FetchCategoryWiseNews(String category) async {
+  Future<void> fetchCategoryWiseNews(String category) async {
     try {
       final uri =
           "https://newsapi.org/v2/top-headlines?category=$category&apiKey=b54cfe8c6cc64318943f514f585588c2";
