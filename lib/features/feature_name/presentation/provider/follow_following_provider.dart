@@ -5,14 +5,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 class FollowProvider extends ChangeNotifier {
   String followText = "Follow"; // Default text
 
-  List<String> followedSourceName = [];
+  //News source name ko value haru store garna ko lagi
+  List<String> followedSourceName = [""];
+  String keyForSourceNameStore = "sourceName";
 
   //Yo shared Preference ma sourceName lai chai as a key ko rupma use gariyeko xa.
-  Future<void> changeFollowAndFollowing(String sourceName) async {
+  Future<void> changeFollowAndFollowing(String? sourceName) async {
     final prefs = await SharedPreferences.getInstance();
     //shared preference ma chai tyo source name key bhayera store bhako xa ki xaina
     //bhanera check garxa.
-    final isFollowed = prefs.getBool(sourceName) ?? false;
+    final isFollowed = prefs.getBool(sourceName!) ?? false;
 
     //yadi true bhaye false ra false bahye true gardinxa.
     final newFollowState = !isFollowed;
@@ -23,11 +25,26 @@ class FollowProvider extends ChangeNotifier {
     // Update the followText based on the new state
     followText = newFollowState ? "Following" : "Follow";
 
+    //aba follow gareko source haru chai yeuta list ma store bhayera shared preference ma halnu
+    //paryo
+    followedSourceName = prefs.getStringList(keyForSourceNameStore) ?? [];
+
+    if (!(followedSourceName.contains(sourceName))) {
+      followedSourceName.add(sourceName);
+      prefs.setStringList(keyForSourceNameStore, followedSourceName);
+    }
+    debugPrint(prefs.getStringList(keyForSourceNameStore).toString());
+
     // Notify listeners for UI update
     notifyListeners();
   }
 
- 
+  Future<void> getFollowedSource() async {
+    final prefs = await SharedPreferences.getInstance();
+    followedSourceName = prefs.getStringList(keyForSourceNameStore) ?? [];
+    notifyListeners();
+  }
+
   // Method to load the initial follow state from SharedPreferences
   Future<void> loadFollowState(String sourceName) async {
     final prefs = await SharedPreferences.getInstance();
