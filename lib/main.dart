@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(color: Colors.blue, centerTitle: true),
         dialogTheme: DialogTheme(backgroundColor: Colors.purple),
       ),
-      home: const PostsShowingScreen(),
+      home: const HomeScreen(),
     );
   }
 }
