@@ -20,9 +20,7 @@ class _FollowedSourceState extends ConsumerState<FollowedSource> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await ref.read(followProvider.notifier).getFollowedSource();
     });
-    
   }
-
 
   @override
   Widget build(BuildContext context) {
