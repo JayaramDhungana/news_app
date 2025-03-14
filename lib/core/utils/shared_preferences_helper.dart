@@ -3,8 +3,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPreferencesHelper {
   static const String favoritesKey = 'favorite_posts';
 
-
-
   // Add post to favorites
   static Future<void> addPostToFavorites(int postId) async {
     //yo getInstance le chai file read and write garnako lagi ready xa  bhanne instance linxa
@@ -58,5 +56,12 @@ class SharedPreferencesHelper {
     final prefs = await SharedPreferences.getInstance();
     List<String> favoritePosts = prefs.getStringList(favoritesKey) ?? [];
     return favoritePosts.contains(postId.toString());
+  }
+
+  //News ko lagi
+  static Future<bool> isNewsFollowed(String sourceName) async {
+    final prefs = await SharedPreferences.getInstance();
+    List<String> favoritePosts = prefs.getStringList("sourceName") ?? [];
+    return favoritePosts.contains(sourceName);
   }
 }
