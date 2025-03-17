@@ -50,6 +50,11 @@ class _PostsShowingScreenState extends ConsumerState<PostsShowingScreen> {
     }
 
     // After updating SharedPreferences, update the state of the post
+    /**
+     * This code snippet is updating the state of the favoritePostsProvider 
+     * after making changes to the SharedPreferences (though the update of
+     *  SharedPreferences itself isn't explicitly shown in this code).
+     */
     ref.read(favoritePostsProvider.notifier).update((state) {
       // Copy the current state and toggle the favorite status
       final updatedState = Map<int, bool>.from(state);

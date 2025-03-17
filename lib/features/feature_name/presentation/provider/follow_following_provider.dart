@@ -44,7 +44,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 //       prefs.setStringList(keyForSourceNameStore, followedSourceName);
 //     }
 
-//     // Notify listeners for UI update
+//
 //     notifyListeners();
 //   }
 
@@ -58,7 +58,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 //   }
 // }
 class FollowProvider extends ChangeNotifier {
-  String followText = "Follow"; // Default text
+  String followText = "Follow";
   List<String> followedSourceName = [];
   String keyForSourceNameStore = "sourceName";
 
@@ -101,7 +101,6 @@ class FollowProvider extends ChangeNotifier {
     notifyListeners(); // Notify listeners for UI update
   }
 }
-
 
 final followProvider = ChangeNotifierProvider<FollowProvider>((ref) {
   return FollowProvider();
