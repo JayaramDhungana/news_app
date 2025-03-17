@@ -24,22 +24,60 @@ class _FollowedSourceState extends ConsumerState<FollowedSource> {
 
   @override
   Widget build(BuildContext context) {
-    final FollowedSourceFromProvider = ref.watch(followProvider);
+    final followedSourceFromProvider = ref.watch(followProvider);
 
     return Scaffold(
       appBar: AppBar(title: Text("Your Followed Source")),
       body: ListView.builder(
-        itemCount: FollowedSourceFromProvider.followedSourceName.length,
+        itemCount: followedSourceFromProvider.followedSourceName.length,
         itemBuilder: (context, index) {
           final followedSourceToShow =
-              FollowedSourceFromProvider.followedSourceName[index];
-          return ListTile(
-            title: TextWidget(
-              text: followedSourceToShow,
-              color: Colors.black,
-              size: 25,
-            ),
-          );
+              followedSourceFromProvider.followedSourceName[index];
+          final isloading = followedSourceToShow.isEmpty ? true : false;
+          return isloading
+              ? CircularProgressIndicator(color: Colors.red)
+              : ListTile(
+                leading: CircleAvatar(child: Text((index + 1).toString())),
+                title: TextWidget(
+                  text: followedSourceToShow,
+                  color: Colors.black,
+                  size: 25,
+                ),
+                trailing: IconButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return SimpleDialog(
+                          title: Text(
+                            "Do you Want to delete this From your Followed Soruce",
+                          ),
+                          children: [
+                            SimpleDialogOption(
+                              child: Text("Yes"),
+                              onPressed: () {
+                                ref
+                                    .read(followProvider)
+                                    .changeFollowAndFollowing(
+                                      followedSourceToShow,
+                                    );
+                                Navigator.pop(context);
+                              },
+                            ),
+                            SimpleDialogOption(
+                              child: Text("No"),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  icon: Icon(Icons.delete),
+                ),
+              );
         },
       ),
     );

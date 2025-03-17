@@ -4,6 +4,7 @@ import 'package:news_using_clean_architecture/features/feature_name/presentation
 import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/category_wise_news_provider.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/favourite_news_provider.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/calculate_date_difference.dart';
+import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/followed_or_not_show.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/text_widget.dart';
 
 class CategoryWiseNewsScreen extends ConsumerStatefulWidget {
@@ -74,10 +75,18 @@ class _CategoryWiseNewsScreenState
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextWidget(
-                  text: categoryWiseNewsDetails.name ?? "No Name",
-                  color: Colors.black,
-                  size: 12,
+                Row(
+                  children: [
+                    TextWidget(
+                      text: categoryWiseNewsDetails.name ?? "No Name",
+                      color: Colors.black,
+                      size: 12,
+                    ),
+                    Spacer(),
+                    FollowedOrNotWidget(
+                      sourceName: categoryWiseNewsDetails.name ?? "No Name",
+                    ),
+                  ],
                 ),
                 TextWidget(
                   text: categoryWiseNewsDetails.title ?? "No title",

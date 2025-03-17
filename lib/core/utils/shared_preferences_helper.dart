@@ -1,7 +1,10 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesHelper {
+  //favorite key for post
   static const String favoritesKey = 'favorite_posts';
+  //favorite key for news
+  static const String newsFavoritesKey = 'favorite_news';
 
   // Add post to favorites
   static Future<void> addPostToFavorites(int postId) async {
