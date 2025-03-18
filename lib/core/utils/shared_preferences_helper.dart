@@ -61,10 +61,67 @@ class SharedPreferencesHelper {
     return favoritePosts.contains(postId.toString());
   }
 
-  //News ko lagi
+  //*********************************************FOR NEWS**************************************************************************** */
+
+  //favorite News Add Garna Ko Lagi
+  static Future<void> addToFavorite(String newsTitle) async {
+    final prefs = await SharedPreferences.getInstance();
+    List<String> favoriteNewses = prefs.getStringList(newsFavoritesKey) ?? [];
+    if (!(favoriteNewses.contains(newsTitle))) {
+      favoriteNewses.add(newsTitle);
+      await prefs.setStringList(newsFavoritesKey, favoriteNewses);
+    }
+  }
+
+  static Future<void> removeFavoriteNews(String newsTitle) async {
+    final prefs = await SharedPreferences.getInstance();
+    List<String> favoriteNewses = prefs.getStringList(newsFavoritesKey) ?? [];
+    favoriteNewses.remove(newsTitle);
+    await prefs.setStringList(newsFavoritesKey, favoriteNewses);
+  }
+
+  // static Future<List<String>> showFavoriteNews() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   List<String> favoriteNewses = prefs.getStringList(newsFavoritesKey) ?? [];
+
+  // }
+
   static Future<bool> isNewsFollowed(String sourceName) async {
     final prefs = await SharedPreferences.getInstance();
     List<String> favoritePosts = prefs.getStringList("sourceName") ?? [];
     return favoritePosts.contains(sourceName);
+  }
+
+  ///////////////////////////////////////////// For Joke///////////////////
+  static const String keyforFavoriteJoke = "favorite_joke";
+
+  static Future<void> addJokeToFavorite(String JokeTitle) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    List<String> fovoriteJokes = prefs.getStringList(keyforFavoriteJoke) ?? [];
+
+    if (!(fovoriteJokes.contains(JokeTitle))) {
+      fovoriteJokes.add(JokeTitle);
+      await prefs.setStringList(keyforFavoriteJoke, fovoriteJokes);
+    }
+  }
+
+  static Future<void> removeJokesFromFavorite(String JokeTitle) async {
+    final prefs = await SharedPreferences.getInstance();
+    List<String> fovoriteJokes = prefs.getStringList(keyforFavoriteJoke) ?? [];
+    fovoriteJokes.remove(JokeTitle);
+    await prefs.setStringList(keyforFavoriteJoke, fovoriteJokes);
+  }
+
+  static Future<List<String>> showJokes() async {
+    final prefs = await SharedPreferences.getInstance();
+    List<String> favoriteJokes = prefs.getStringList(keyforFavoriteJoke) ?? [];
+    return favoriteJokes;
+  }
+
+  static Future<bool> isJokeFavorite(String jokeTitle) async {
+    final prefs = await SharedPreferences.getInstance();
+    List<String> favoriteJokes = prefs.getStringList(keyforFavoriteJoke) ?? [];
+    return favoriteJokes.contains(jokeTitle);
   }
 }
