@@ -128,4 +128,38 @@ class SharedPreferencesHelper {
     List<String> favoriteJokes = prefs.getStringList(keyforFavoriteJoke) ?? [];
     return favoriteJokes.contains(jokeTitle);
   }
+
+  /////////////////////////////////////////////////Random Email ko Lagi///////////////////////////
+  static final String favoriteEmailKey = "favoriteEmail";
+  //To Store favorite Email
+  static Future<void> addFavoriteEmail(String emailToStore) async {
+    final prefs = await SharedPreferences.getInstance();
+    final List<String> favoriteEmails =
+        prefs.getStringList(favoriteEmailKey) ?? [];
+
+    if (!(favoriteEmails.contains(emailToStore))) {
+      favoriteEmails.add(emailToStore);
+      await prefs.setStringList(favoriteEmailKey, favoriteEmails);
+    }
+  }
+
+  //To Remove favorite Email
+  static Future<List<String>> removefavoriteEmail(String emailToRemove) async {
+    final prefs = await SharedPreferences.getInstance();
+    final List<String> favoriteEmails =
+        await prefs.getStringList(favoriteEmailKey) ?? [];
+
+    favoriteEmails.remove(emailToRemove);
+    await prefs.setStringList(favoriteEmailKey, favoriteEmails);
+    return [];
+  }
+
+  //To Show the favorite Email
+  static Future<List<String>> showfavoriteEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    final List<String> favoriteEmails =
+        await prefs.getStringList(favoriteEmailKey) ?? [];
+
+    return favoriteEmails;
+  }
 }
