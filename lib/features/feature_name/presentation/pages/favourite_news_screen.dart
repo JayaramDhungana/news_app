@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_using_clean_architecture/core/utils/shared_preferences_helper.dart';
+import 'package:news_using_clean_architecture/features/feature_name/presentation/pages/show_favorite_using_shared_preference.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/favourite_news_provider.dart';
 
 import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/text_widget.dart';
@@ -20,6 +22,19 @@ class _FavouriteNewsScreenState extends ConsumerState<FavouriteNewsScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: TextWidget(text: "Favourte News", color: Colors.black, size: 30),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ShowFavoriteUsingSharedPreference(),
+                ),
+              );
+            },
+            icon: Icon(Icons.storefront),
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: favouriteNewsFromProvier.favouriteNews.length,
@@ -96,11 +111,16 @@ class _FavouriteNewsScreenState extends ConsumerState<FavouriteNewsScreen> {
                             size: 20,
                           ),
                           onPressed: () {
+                            //Yo chai Listkp matra delete garna ko lagi
                             ref
                                 .read(favouriteNewsProvider)
                                 .deleteFavouriteNews(
                                   favouriteNewsDetails.title!,
                                 );
+                            //yo chai shared preferenceko pani delete garnako lagi
+                            SharedPreferencesHelper.removeFavoriteNews(
+                              favouriteNewsDetails.title!,
+                            );
                             Navigator.pop(context);
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
