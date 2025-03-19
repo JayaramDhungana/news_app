@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesHelper {
@@ -64,7 +65,10 @@ class SharedPreferencesHelper {
   //*********************************************FOR NEWS**************************************************************************** */
 
   //favorite News Add Garna Ko Lagi
-  static Future<void> addToFavorite(String newsTitle) async {
+  static Future<void> addToFavoriteNews(
+    String newsTitle,
+    String urlToImage,
+  ) async {
     final prefs = await SharedPreferences.getInstance();
     List<String> favoriteNewses = prefs.getStringList(newsFavoritesKey) ?? [];
     if (!(favoriteNewses.contains(newsTitle))) {
@@ -80,11 +84,11 @@ class SharedPreferencesHelper {
     await prefs.setStringList(newsFavoritesKey, favoriteNewses);
   }
 
-  // static Future<List<String>> showFavoriteNews() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   List<String> favoriteNewses = prefs.getStringList(newsFavoritesKey) ?? [];
-
-  // }
+  static Future<List<String>> showFavoriteNews() async {
+    final prefs = await SharedPreferences.getInstance();
+    List<String> favoriteNewses = prefs.getStringList(newsFavoritesKey) ?? [];
+    return favoriteNewses;
+  }
 
   static Future<bool> isNewsFollowed(String sourceName) async {
     final prefs = await SharedPreferences.getInstance();
