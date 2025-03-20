@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_using_clean_architecture/core/utils/shared_preferences_helper.dart';
+import 'package:news_using_clean_architecture/features/feature_name/presentation/pages/show_json_encoded_favorite_news.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/favourite_news_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,7 +30,22 @@ class _ShowFavoriteUsingSharedPreferenceState
     final favNewsTitleFromProvider =
         ref.watch(favouriteNewsProvider).favoriteNewsTitle;
     return Scaffold(
-      appBar: AppBar(title: Text("Show Favorite Using Shared Preference")),
+      appBar: AppBar(
+        title: Text("Show Favorite Using Shared Preference"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ShowJsonEncodedFavoriteNews(),
+                ),
+              );
+            },
+            icon: Icon(Icons.radar),
+          ),
+        ],
+      ),
 
       body: ListView.builder(
         itemCount: favNewsTitleFromProvider.length,
@@ -49,13 +65,18 @@ class _ShowFavoriteUsingSharedPreferenceState
                       children: [
                         SimpleDialogOption(
                           onPressed: () {
-                            SharedPreferencesHelper.removeFavoriteNews(
-                              favoriteNews.toString(),
-                            );
-                            ref.read(favouriteNewsProvider).loadFavoriteNews();
                             ref
                                 .read(favouriteNewsProvider)
-                                .deleteFavouriteNews(favoriteNews.toString());
+                                .removeFavoriteNewsFromSharedPreferences(
+                                  favoriteNews.toString(),
+                                );
+                            // SharedPreferencesHelper.removeFavoriteNews(
+                            //   favoriteNews.toString(),
+                            // );
+                            // ref.read(favouriteNewsProvider).loadFavoriteNews();
+                            // ref
+                            //     .read(favouriteNewsProvider)
+                            //     .deleteFavouriteNews(favoriteNews.toString());
                             Navigator.pop(context);
                           },
                           child: Text("Confirm"),

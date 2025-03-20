@@ -162,4 +162,40 @@ class SharedPreferencesHelper {
 
     return favoriteEmails;
   }
+
+  ////////////////////////////////////////Json Encode wala Data Chai Rakhna Ko Lagi
+  static String keyForStoreJsonEncodedNews = "Json_Encode_News";
+  /*To add Jsonencoded News to the ShredPreferences */
+  static Future<void> addJsonEncodedNews(String jsonEncodedNewsforAdd) async {
+    final prefs = await SharedPreferences.getInstance();
+    final List<String> jsonEncodedNews =
+        prefs.getStringList(keyForStoreJsonEncodedNews) ?? [];
+
+    if (!(jsonEncodedNews.contains(jsonEncodedNewsforAdd))) {
+      jsonEncodedNews.add(jsonEncodedNewsforAdd);
+      await prefs.setStringList(keyForStoreJsonEncodedNews, jsonEncodedNews);
+    }
+  }
+
+  //To Show the JsonEncoded News
+  static Future<List<String>> showJsonEncodedNews() async {
+    final prefs = await SharedPreferences.getInstance();
+    final List<String> jsonEncodedNews =
+        prefs.getStringList(keyForStoreJsonEncodedNews) ?? [];
+    return jsonEncodedNews;
+  }
+
+  //To delete the JsonEncoded News
+  static Future<List<String>> removeJsonEncodedNews(
+    String jsonEncodedNewsForDelete,
+  ) async {
+    final prefs = await SharedPreferences.getInstance();
+    final List<String> jsonEncodedNews =
+        prefs.getStringList(keyForStoreJsonEncodedNews) ?? [];
+    jsonEncodedNews.remove(jsonEncodedNewsForDelete);
+
+    await prefs.setStringList(keyForStoreJsonEncodedNews, jsonEncodedNews);
+
+    return jsonEncodedNews;
+  }
 }
