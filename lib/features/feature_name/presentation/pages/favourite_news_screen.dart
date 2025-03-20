@@ -121,6 +121,12 @@ class _FavouriteNewsScreenState extends ConsumerState<FavouriteNewsScreen> {
                             SharedPreferencesHelper.removeFavoriteNews(
                               favouriteNewsDetails.title!,
                             );
+                            //Json Encoded Favorite News Ko lagi ho
+                            ref
+                                .read(favouriteNewsProvider)
+                                .deleteJsonEncodedNews(
+                                  favouriteNewsDetails.title!,
+                                );
                             Navigator.pop(context);
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_using_clean_architecture/core/utils/shared_preferences_helper.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/random_email_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ShowFavoriteEmailSharedPreferences extends ConsumerStatefulWidget {
   const ShowFavoriteEmailSharedPreferences({super.key});
@@ -48,6 +50,9 @@ class _ShowFavoriteEmailSharedPreferencesState
                         SimpleDialogOption(
                           child: Text("Confirm"),
                           onPressed: () {
+                            SharedPreferencesHelper.removefavoriteEmail(
+                              favoriteEmail.toString(),
+                            );
                             ref
                                 .read(randomEmailProvider)
                                 .deleteFavoriteEmail(favoriteEmail.toString());
@@ -57,7 +62,7 @@ class _ShowFavoriteEmailSharedPreferencesState
                             ref
                                 .read(randomEmailProvider)
                                 .deleteFavoriteEmail(favoriteEmail.toString());
-                          
+
                             Navigator.pop(context);
                           },
                         ),
