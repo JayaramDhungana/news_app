@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -185,17 +187,36 @@ class SharedPreferencesHelper {
     return jsonEncodedNews;
   }
 
-  //To delete the JsonEncoded News
+  //////////////////////////////////To delete the JsonEncoded News ///////////////////
   static Future<List<String>> removeJsonEncodedNews(
-    String jsonEncodedNewsForDelete,
+    String jsonEncodedNewsTitleForDelete,
   ) async {
     final prefs = await SharedPreferences.getInstance();
     final List<String> jsonEncodedNews =
         prefs.getStringList(keyForStoreJsonEncodedNews) ?? [];
-    jsonEncodedNews.remove(jsonEncodedNewsForDelete);
+    // jsonEncodedNews.remove(jsonEncodedNewsForDelete);
 
-    await prefs.setStringList(keyForStoreJsonEncodedNews, jsonEncodedNews);
+    List<Map<String, dynamic>> decodedNewsList =
+        jsonEncodedNews
+            .map((jsonString) => jsonDecode(jsonString) as Map<String, dynamic>)
+            .toList();
 
-    return jsonEncodedNews;
+         //aba chai match hune kura delete garnu paryo
+        decodedNewsList.removeWhere((news) {
+      return news['Favorite News']['title'] == jsonEncodedNewsTitleForDelete;
+    });
+
+    //Re Encode
+    // Re-encode the updated news list back into JSON strings
+    List<String> updatedJsonEncodedNews =
+        decodedNewsList.map((news) => jsonEncode(news) ).toList();
+
+    await prefs.setStringList(
+      keyForStoreJsonEncodedNews,
+      updatedJsonEncodedNews,
+    );
+
+    return updatedJsonEncodedNews;
   }
 }
+

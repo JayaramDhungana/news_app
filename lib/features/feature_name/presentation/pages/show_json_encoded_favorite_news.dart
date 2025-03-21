@@ -107,7 +107,7 @@ class _ShowJsonEncodedFavoriteNewsState
                             ref
                                 .read(favouriteNewsProvider)
                                 .deleteJsonEncodedNews(
-                                  jsonEncodedNews.toString(),
+                                  jsonDecodedNews['Favorite News']['title'],
                                 );
                             Navigator.pop(context);
                             ref
