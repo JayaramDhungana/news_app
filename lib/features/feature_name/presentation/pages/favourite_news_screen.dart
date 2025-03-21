@@ -122,6 +122,7 @@ class _FavouriteNewsScreenState extends ConsumerState<FavouriteNewsScreen> {
                               favouriteNewsDetails.title!,
                             );
                             //Json Encoded Favorite News Ko lagi ho
+
                             ref
                                 .read(favouriteNewsProvider)
                                 .deleteJsonEncodedNews(

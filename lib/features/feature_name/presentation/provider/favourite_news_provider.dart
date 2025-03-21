@@ -106,6 +106,7 @@ class FavouriteNewsProvider extends ChangeNotifier {
 
   //Delete JsonEncoded News
   Future<void> deleteJsonEncodedNews(String jsonEncodedNewsforDelete) async {
+    
     jsonEncodedFavoriteNews =
         await SharedPreferencesHelper.removeJsonEncodedNews(
           jsonEncodedNewsforDelete,
