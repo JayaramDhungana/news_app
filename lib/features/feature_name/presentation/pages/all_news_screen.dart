@@ -84,7 +84,9 @@ class _AllNewsScreenState extends ConsumerState<AllNewsScreen> {
                       size: 13,
                     ),
                     Spacer(),
-                    FollowedOrNotWidget(sourceName: allNewsDetails.name??"NO Name"),
+                    FollowedOrNotWidget(
+                      sourceName: allNewsDetails.name ?? "NO Name",
+                    ),
                   ],
                 ),
                 TextWidget(
@@ -164,7 +166,7 @@ class _AllNewsScreenState extends ConsumerState<AllNewsScreen> {
               },
               icon: Icon(
                 isFavourite ? Icons.favorite : Icons.favorite_outline,
-                color: isFavourite ? Colors.red : Colors.black,
+                color: isFavourite ? (Colors.red) : null,
               ),
             ),
           );

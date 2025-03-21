@@ -164,7 +164,7 @@ class _CategoryWiseNewsScreenState
               },
               icon: Icon(
                 isFavourite ? Icons.favorite : Icons.favorite_outline,
-                color: isFavourite ? Colors.red : Colors.black,
+                color: isFavourite ? Colors.red : null,
               ),
             ),
           );
