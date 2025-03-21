@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/pages/all_news_screen.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/pages/category_wise_news_screen.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/pages/favourite_news_screen.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/pages/followed_source.dart';
+import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/theme_provider.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/text_widget.dart';
+import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/theme.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends ConsumerStatefulWidget {
+  final ThemeData currentTheme;
+  const HomeScreen({required this.currentTheme, super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
+class _HomeScreenState extends ConsumerState<HomeScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   @override
@@ -20,6 +24,18 @@ class _HomeScreenState extends State<HomeScreen>
     // TODO: implement initState
     super.initState();
     _tabController = TabController(length: 8, vsync: this);
+
+    ref.read(themeProvider).initialTheme();
+  }
+
+  ThemeData themeChange(ThemeData currentTheme) {
+    ThemeData requestedTheme;
+    if (currentTheme == darkTheme) {
+      requestedTheme = lightTheme;
+    } else {
+      requestedTheme = darkTheme;
+    }
+    return requestedTheme;
   }
 
   @override
@@ -59,6 +75,14 @@ class _HomeScreenState extends State<HomeScreen>
               decoration: BoxDecoration(color: Colors.grey[200]),
               child: Icon(Icons.notifications_none_sharp, size: 40),
             ),
+            IconButton(
+              onPressed: () {
+                ref
+                    .read(themeProvider.notifier)
+                    .changeThemes(themeChange(widget.currentTheme));
+              },
+              icon: Icon(Icons.color_lens),
+            ),
           ],
         ),
       ),
@@ -92,6 +116,7 @@ class _HomeScreenState extends State<HomeScreen>
           TabBar(
             isScrollable: true,
             controller: _tabController,
+
             tabs: [
               TextWidget(text: "All", color: Colors.black, size: 15),
               TextWidget(text: "Business", color: Colors.black, size: 15),

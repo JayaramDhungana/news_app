@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/theme_provider.dart';
+import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/theme.dart';
 
-class TextWidget extends StatelessWidget {
+class TextWidget extends ConsumerWidget {
   final String text;
   final Color color;
   final double size;
@@ -18,11 +21,12 @@ class TextWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeFromProvider = ref.watch(themeProvider).themeToChange;
     return Text(
       text,
       style: TextStyle(
-        color: color,
+        color: themeFromProvider.textTheme.titleMedium!.color,
         fontSize: size,
         fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
       ),

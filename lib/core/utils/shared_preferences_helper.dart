@@ -201,15 +201,15 @@ class SharedPreferencesHelper {
             .map((jsonString) => jsonDecode(jsonString) as Map<String, dynamic>)
             .toList();
 
-         //aba chai match hune kura delete garnu paryo
-        decodedNewsList.removeWhere((news) {
+    //aba chai match hune kura delete garnu paryo
+    decodedNewsList.removeWhere((news) {
       return news['Favorite News']['title'] == jsonEncodedNewsTitleForDelete;
     });
 
     //Re Encode
     // Re-encode the updated news list back into JSON strings
     List<String> updatedJsonEncodedNews =
-        decodedNewsList.map((news) => jsonEncode(news) ).toList();
+        decodedNewsList.map((news) => jsonEncode(news)).toList();
 
     await prefs.setStringList(
       keyForStoreJsonEncodedNews,
@@ -218,5 +218,17 @@ class SharedPreferencesHelper {
 
     return updatedJsonEncodedNews;
   }
-}
 
+  /********************************Theme Store Garna Ko lagi*********/
+  static String keyForTheme = 'key_for_theme';
+  static Future<void> addThemeData(isTrue) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(keyForTheme, isTrue);
+  }
+
+  static Future<bool> showThemeData() async {
+    final prefs = await SharedPreferences.getInstance();
+    final dataofTheme =  prefs.getBool(keyForTheme);
+    return  dataofTheme!;
+  }
+}
