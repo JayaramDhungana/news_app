@@ -28,6 +28,4 @@ final ThemeData darkTheme = ThemeData(
     style: ButtonStyle(iconColor: WidgetStateProperty.all(Colors.red)),
   ),
   iconTheme: IconThemeData(color: Colors.red),
-
-  
 );

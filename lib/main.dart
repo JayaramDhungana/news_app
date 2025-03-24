@@ -22,17 +22,25 @@ class _MyAppState extends ConsumerState<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final themeFromProvider = ref.watch(themeProvider).themeToChange;
+    final themeFromProvider = ref.watch(themeProvider);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: themeFromProvider,
+      theme:
+          ThemeData.light(), //light theme ra dark theme yeha define gareko ho.
+      darkTheme: ThemeData.dark(), // Dark theme
+      //Themne Change
+      themeMode:
+          themeFromProvider.themeMode == ThemeModeEnum.light
+              ? ThemeMode.light
+              : ThemeMode.dark,
+      // theme: themeFromProvider,
       // theme: ThemeData(
       //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       //   appBarTheme: AppBarTheme(color: Colors.blue, centerTitle: true),
       //   dialogTheme: DialogTheme(backgroundColor: Colors.purple),
       // ),
-      home: HomeScreen(currentTheme: themeFromProvider),
+      home: HomeScreen(),
     );
   }
 }

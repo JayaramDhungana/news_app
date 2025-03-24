@@ -22,11 +22,14 @@ class TextWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeFromProvider = ref.watch(themeProvider).themeToChange;
+    final themeFromProvider = ref.watch(themeProvider).themeMode;
     return Text(
       text,
       style: TextStyle(
-        color: themeFromProvider.textTheme.titleMedium!.color,
+        color:
+            themeFromProvider == ThemeModeEnum.light
+                ? Colors.black
+                : Colors.white,
         fontSize: size,
         fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
       ),
