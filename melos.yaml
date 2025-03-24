@@ -1,0 +1,16 @@
+name: news_using_clean_architecture
+
+packages:
+  - packages/*
+
+scripts:
+  test:selective_unit_test:
+    exec: flutter test
+    dir-exists: "test"
+    fail-fast: true
+    description: Run selective unit tests
+
+  test:all_unit_tests:
+    exec: flutter test
+    no-select: true
+    description: Run all unit testsAdditionally, you can incorporate commands for analysis and code coverage. Melos offers a GUI interface for seamless execution without terminal input.
