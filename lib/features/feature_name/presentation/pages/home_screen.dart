@@ -9,8 +9,8 @@ import 'package:news_using_clean_architecture/features/feature_name/presentation
 import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/theme.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
-  final ThemeData currentTheme;
-  const HomeScreen({required this.currentTheme, super.key});
+  // final ThemeData currentTheme;
+  const HomeScreen({super.key});
 
   @override
   ConsumerState<HomeScreen> createState() => _HomeScreenState();
@@ -25,7 +25,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     super.initState();
     _tabController = TabController(length: 8, vsync: this);
 
-    ref.read(themeProvider).initialTheme();
+    // ref.read(themeProvider).initialTheme();
+    ref.read(themeProvider).initialThemeMode();
   }
 
   ThemeData themeChange(ThemeData currentTheme) {
@@ -40,6 +41,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
+    final themeFromProvider = ref.watch(themeProvider);
+
     return Scaffold(
       appBar: AppBar(
         //Mathi 3 wota kuraharu xan.Image ,notifications ra favourite news ko lagi icon
@@ -71,17 +74,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
               },
               icon: Icon(Icons.favorite, color: Colors.red, size: 40),
             ),
-            Container(
-              decoration: BoxDecoration(color: Colors.grey[200]),
-              child: Icon(Icons.notifications_none_sharp, size: 40),
-            ),
+            Container(child: Icon(Icons.notifications_none_sharp, size: 40)),
             IconButton(
               onPressed: () {
-                ref
-                    .read(themeProvider.notifier)
-                    .changeThemes(themeChange(widget.currentTheme));
+                themeFromProvider.toggleTheme();
+                // ref
+                //     .read(themeProvider.notifier)
+                //     .changeThemes(themeChange(widget.currentTheme));
               },
-              icon: Icon(Icons.color_lens),
+              icon: Icon(
+                themeFromProvider.themeMode == ThemeModeEnum.light
+                    ? Icons.dark_mode
+                    : Icons.light_mode,
+              ),
             ),
           ],
         ),
