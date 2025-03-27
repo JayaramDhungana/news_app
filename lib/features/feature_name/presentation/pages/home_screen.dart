@@ -74,7 +74,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
               },
               icon: Icon(Icons.favorite, color: Colors.red, size: 40),
             ),
-            Container(child: Icon(Icons.notifications_none_sharp, size: 40)),
+            // Container(child: Icon(Icons.notifications_none_sharp, size: 40)),
             IconButton(
               onPressed: () {
                 themeFromProvider.toggleTheme();
