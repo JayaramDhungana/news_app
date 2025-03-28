@@ -6,15 +6,23 @@ import 'package:news_using_clean_architecture/ui_design/presentation/widgets/tex
 class ContainerWidget extends StatelessWidget {
   final Image leadingIcon;
   final String titleText;
-  final String? subtitleText;
+  final String subtitleText;
   final double inerContainerHeight;
+  final double textContainerHeight;
+  final double titleTextHeight;
+  final double titleTextWidth;
+  final EdgeInsetsGeometry leadingIconPadding;
 
   const ContainerWidget({
     super.key,
     required this.leadingIcon,
     required this.titleText,
-    this.subtitleText,
+    required this.subtitleText,
     required this.inerContainerHeight,
+    required this.textContainerHeight,
+    required this.titleTextHeight,
+    required this.titleTextWidth,
+    required this.leadingIconPadding,
   });
 
   @override
@@ -40,7 +48,7 @@ class ContainerWidget extends StatelessWidget {
                 children: [
                   //Imageko ko lagi
                   Padding(
-                    padding: REdgeInsets.only(top: 8, bottom: 8, right: 12),
+                    padding: leadingIconPadding,
                     child: SizedBox(
                       height: 20.h,
                       width: 20.w,
@@ -49,30 +57,42 @@ class ContainerWidget extends StatelessWidget {
                   ),
 
                   //Image sakiyo aba text
+                  //yo text ko ho
                   SizedBox(
-                    height: 99.h,
+                    height: textContainerHeight.h,
                     width: 250.h,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          titleText,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.labelMedium!.copyWith(
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF1D1E1F),
+                        SizedBox(
+                          height: titleTextHeight,
+                          width: titleTextWidth,
+                          child: Text(
+                            titleText,
+                            style: Theme.of(
+                              context,
+                            ).textTheme.labelMedium!.copyWith(
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFF1D1E1F),
+                            ),
                           ),
                         ),
-                        Text(
-                          subtitleText ?? '',
-                          style: Theme.of(
-                            context,
-                          ).textTheme.labelMedium!.copyWith(
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xFF525556),
-                          ),
-                        ),
+                        //yo chai off bhanne text ho,
+                        subtitleText.isNotEmpty
+                            ? SizedBox(
+                              height: 18.h,
+                              width: 25.h, //21 le pugena
+                              child: Text(
+                                subtitleText,
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.labelMedium!.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xFF525556),
+                                ),
+                              ),
+                            )
+                            : SizedBox(height: 0, width: 0),
                       ],
                     ),
                   ),

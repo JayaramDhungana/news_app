@@ -9,6 +9,7 @@ import 'package:news_using_clean_architecture/features/feature_name/presentation
 import 'package:news_using_clean_architecture/features/feature_name/presentation/provider/theme_provider.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/theme.dart';
 import 'package:news_using_clean_architecture/ui_design/presentation/page/home_screen_ui_design.dart';
+import 'package:news_using_clean_architecture/ui_design/presentation/widgets/members_container_widgets.dart';
 
 void main() {
   runApp(ProviderScope(child: const MyApp()));
@@ -73,7 +74,6 @@ class _MyAppState extends ConsumerState<MyApp> {
                 fontSize: 14.sp,
                 height: 18 / 14.h,
                 letterSpacing: -0.1.w,
-               
               ),
             ),
           ),
