@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_using_clean_architecture/ui_design_second/presentation/pages/registration_ui/registration_second_screen.dart';
 import 'package:news_using_clean_architecture/ui_design_second/presentation/widgets/log_in_container_widget.dart';
+import 'package:news_using_clean_architecture/ui_design_second/presentation/widgets/progress_container_widget.dart';
+import 'package:news_using_clean_architecture/ui_design_second/presentation/widgets/text_button_widget.dart';
 
 class RegistrationFirstScreen extends StatelessWidget {
   const RegistrationFirstScreen({super.key});
@@ -14,16 +17,8 @@ class RegistrationFirstScreen extends StatelessWidget {
         color: Colors.white,
         child: Column(
           children: [
-            Row(
-              children: [
-                Container(height: 2.h, width: 15.w, color: Colors.blue),
-                Container(
-                  color: Colors.grey.withOpacity(0.1),
-                  height: 2.h,
-                  width: (MediaQuery.of(context).size.width) - 15.w,
-                ),
-              ],
-            ),
+            ProgressContainerWidget(width: 15),
+
             SizedBox(height: 30.h),
             Image(image: AssetImage("assets/registration_first.png")),
             SizedBox(height: 30.h),
@@ -39,23 +34,51 @@ class RegistrationFirstScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.labelSmall,
             ),
             SizedBox(height: 20),
-            LogInContainerWidget(
-              text: 'Sign up',
-              color: Color(0xFF304FFE),
-              textColor: Colors.white,
-              borderColor: Color(0xFF304FFE),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RegistrationSecondScreen(),
+                  ),
+                );
+              },
+              child: LogInContainerWidget(
+                text: 'Sign up',
+                color: Color(0xFF304FFE),
+                textColor: Colors.white,
+                borderColor: Color(0xFF304FFE),
+              ),
             ),
             SizedBox(height: 10),
-            LogInContainerWidget(
-              text: 'Sign up',
-              color: Colors.white,
-              textColor: Colors.blue,
-              borderColor: Color(0xFF304FFE),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RegistrationSecondScreen(),
+                  ),
+                );
+              },
+              child: LogInContainerWidget(
+                text: 'Log in',
+                color: Colors.white,
+                textColor: Colors.blue,
+                borderColor: Color(0xFF304FFE),
+              ),
             ),
             SizedBox(height: 30),
             Text(
-              "       By continuing you accept our\n Terms of Service and Privace Policy",
+              "       By continuing you accept our",
               style: Theme.of(context).textTheme.labelSmall,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButtonWidget(text: 'Terms of Service'),
+                Text("and", style: Theme.of(context).textTheme.labelSmall),
+                TextButtonWidget(text: 'Privacy Policy'),
+              ],
             ),
           ],
         ),

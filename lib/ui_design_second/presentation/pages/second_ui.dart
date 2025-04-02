@@ -66,15 +66,15 @@ class SecondUi extends StatelessWidget {
                   ),
                 ),
               ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ThirdUi()),
-                  );
-                },
-                child: NextContainerWidget(),
-              ),
+              // InkWell(
+              //   onTap: () {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(builder: (context) => ThirdUi()),
+              //     );
+              //   },
+              //   child: NextContainerWidget(),
+              // ),
             ],
           ),
         ),
