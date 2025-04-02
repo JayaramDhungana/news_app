@@ -51,71 +51,7 @@ class _MembersContainerWidgetState
                       left: 20,
                       top: 10,
                       bottom: 10,
-                      right: 135,
-                    ),
-                    child: Container(
-                      height: 40.h,
-
-                      width: 170.w,
-                      child: Row(
-                        children: [
-                          //agadiko image
-                          CircleAvatar(
-                            child: Image.asset(
-                              membersDataforShow.memberImageLocation,
-                            ),
-                          ),
-                          SizedBox(width: 12.w),
-                          //Aba Name ra Contact,
-                          Container(
-                            width: 118.w,
-                            height: 38.h,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              //name ko lagi sized box
-                              children: [
-                                //name ko lagi sized box
-                                SizedBox(
-                                  height: 18.h,
-                                  width: 100.w,
-                                  child: Text(
-                                    membersDataforShow.memberName,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelMedium!
-                                        .copyWith(fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                                SizedBox(height: 2.h),
-
-                                //number ko lagi Sized Box
-                                SizedBox(
-                                  height: 18.h,
-                                  width: 118.w,
-                                  child: Text(
-                                    membersDataforShow.memberContact,
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.labelMedium!.copyWith(
-                                      fontWeight: FontWeight.w400,
-                                      color: Color(0xFF838485),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  //Trailing Icon
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 14,
-                      bottom: 14,
-                      right: 20,
+                      // right: 135,
                     ),
                     child: InkWell(
                       onTap: () {
@@ -127,17 +63,127 @@ class _MembersContainerWidgetState
                               membersDataforShow.id,
                             );
                       },
+                      child: Container(
+                        height: 40.h,
+                        // color: Colors.black,
+                        width: 330.w,
+                        child: Row(
+                          children: [
+                            //agadiko image
+                            CircleAvatar(
+                              child: Image.asset(
+                                membersDataforShow.memberImageLocation,
+                              ),
+                            ),
+                            SizedBox(width: 12.w),
+                            //Aba Name ra Contact,
+                            Container(
+                              width: 118.w,
+                              height: 38.h,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                //name ko lagi sized box
+                                children: [
+                                  //name ko lagi sized box
+                                  SizedBox(
+                                    height: 18.h,
+                                    width: 100.w,
+                                    child: Text(
+                                      membersDataforShow.memberName,
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.labelMedium!.copyWith(
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 2.h),
 
-                      child: Image(
-                        image:
-                            isIconChanged
-                                ? AssetImage('assets/_Toggle base.png')
-                                : AssetImage('assets/Toggle.png'),
-                        //  AssetImage(membersDataforShow.trailingIcon),
-                        // trailingIconFromProvider.trailingIcon,
+                                  //number ko lagi Sized Box
+                                  SizedBox(
+                                    height: 18.h,
+                                    width: 118.w,
+                                    child: Text(
+                                      membersDataforShow.memberContact,
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.labelMedium!.copyWith(
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xFF838485),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            //Trailing Icon
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                // top: 14,
+                                // bottom: 14,
+                                right: 20,
+                                left: 135,
+                              ),
+                              child: InkWell(
+                                onTap: () {
+                                  debugPrint("pressed in Icon");
+                                  ref
+                                      .read(trailingIconProvider)
+                                      .changeIcon(
+                                        AssetImage(
+                                          membersDataforShow.trailingIcon,
+                                        ),
+                                        membersDataforShow.id,
+                                      );
+                                },
+
+                                child: Image(
+                                  image:
+                                      isIconChanged
+                                          ? AssetImage(
+                                            'assets/_Toggle base.png',
+                                          )
+                                          : AssetImage('assets/Toggle.png'),
+                                  //  AssetImage(membersDataforShow.trailingIcon),
+                                  // trailingIconFromProvider.trailingIcon,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
+
+                  // //Trailing Icon
+                  // Padding(
+                  //   padding: const EdgeInsets.only(
+                  //     top: 14,
+                  //     bottom: 14,
+                  //     right: 20,
+                  //   ),
+                  //   child: InkWell(
+                  //     onTap: () {
+                  //       debugPrint("pressed in Icon");
+                  //       ref
+                  //           .read(trailingIconProvider)
+                  //           .changeIcon(
+                  //             AssetImage(membersDataforShow.trailingIcon),
+                  //             membersDataforShow.id,
+                  //           );
+                  //     },
+
+                  //     child: Image(
+                  //       image:
+                  //           isIconChanged
+                  //               ? AssetImage('assets/_Toggle base.png')
+                  //               : AssetImage('assets/Toggle.png'),
+                  //       //  AssetImage(membersDataforShow.trailingIcon),
+                  //       // trailingIconFromProvider.trailingIcon,
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             );

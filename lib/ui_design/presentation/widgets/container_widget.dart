@@ -27,37 +27,39 @@ class ContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: InkWell(
-        child: Container(
-          width: 353.w,
-          height: 56.h,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: Color(0xFFFFFFFF),
-          ),
-          child:
-          //first row ko left side ko
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 10,
-                  bottom: 10,
-                  left: 20,
-                  right: 10,
-                ),
-                //Icon ra text ko
-                child: Material(
-                  color: Colors.white,
-                  child: InkWell(
-                    onTap: () {
-                      debugPrint("Clicked in container");
-                    },
-
+    return Padding(
+      padding: const EdgeInsets.all(0.0),
+      child: Container(
+        width: 353.w,
+        // height: 56.h,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          // color: Color(0xFFFFFFFF),
+        ),
+        child:
+        //first row ko left side ko
+        Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                top: 10,
+                bottom: 10,
+                left: 20,
+                right: 10,
+              ),
+              //Icon ra text ko
+              child: Material(
+                color: Colors.white,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(16.r),
+                  onTap: () {
+                    debugPrint("Clicked on container");
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8),
                     child: Container(
                       height: inerContainerHeight,
-                      width: 270.w,
+                      width: 290.w,
                       child: Row(
                         children: [
                           //Imageko ko lagi
@@ -77,6 +79,7 @@ class ContainerWidget extends StatelessWidget {
                             width: 250.h,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 SizedBox(
                                   height: titleTextHeight,
@@ -91,6 +94,7 @@ class ContainerWidget extends StatelessWidget {
                                     ),
                                   ),
                                 ),
+
                                 //yo chai off bhanne text ho,
                                 subtitleText.isNotEmpty
                                     ? SizedBox(
@@ -110,43 +114,28 @@ class ContainerWidget extends StatelessWidget {
                               ],
                             ),
                           ),
+                          SizedBox(
+                            height: 20.h,
+                            width: 20.w,
+                            child: Center(
+                              child: Image.asset(
+                                'assets/back_icon.png',
+                                height: 10.h,
+                                width: 5.w,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   ),
                 ),
               ),
-              // Spacer(),
-              //last ko back icon
-              Material(
-                color: Colors.white,
-                child: InkWell(
-                  onTap: () {
-                    debugPrint("Pressed on trailing Icon");
-                  },
-                  child: Padding(
-                    padding: REdgeInsets.only(
-                      top: 18,
-                      bottom: 18,
-                      // left: 10,
-                      // right: 20,
-                    ),
-                    child: SizedBox(
-                      height: 20.h,
-                      width: 20.w,
-                      child: Center(
-                        child: Image.asset(
-                          'assets/back_icon.png',
-                          height: 10.h,
-                          width: 5.w,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+
+            // Spacer(),
+            //last ko back icon
+          ],
         ),
       ),
     );
