@@ -82,7 +82,7 @@ class HomeScreenUiDesign extends StatelessWidget {
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
-        color: const Color.fromARGB(255, 245, 243, 243),
+        color: Color(0xFFFAFCFF),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -155,13 +155,11 @@ class HomeScreenUiDesign extends StatelessWidget {
                           decoration: InputDecoration(
                             hintText: "Group Name",
                             hintStyle: Theme.of(context).textTheme.labelLarge,
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
-                            ),
-
+                            border: InputBorder.none,
                             // enabled: true,
                             isCollapsed: true,
                           ),
+
                           showCursor: true,
                           style: Theme.of(context).textTheme.labelLarge,
                         ),
@@ -206,7 +204,10 @@ class HomeScreenUiDesign extends StatelessWidget {
                           right: 12,
                         ),
                       ),
-                      Container(color: Colors.black, height: 0.5),
+                      Container(
+                        color: Colors.black.withOpacity(0.2),
+                        height: 0.5,
+                      ),
 
                       ContainerWidget(
                         leadingIcon: Image.asset(
@@ -216,7 +217,7 @@ class HomeScreenUiDesign extends StatelessWidget {
                         ),
                         titleText: 'Group Permission',
                         subtitleText: '',
-                        inerContainerHeight: 20.h,
+                        inerContainerHeight: 36.h,
                         textContainerHeight: 30.h,
                         titleTextHeight: 20.h,
                         titleTextWidth: 117.w,

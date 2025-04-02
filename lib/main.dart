@@ -10,6 +10,7 @@ import 'package:news_using_clean_architecture/features/feature_name/presentation
 import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/theme.dart';
 import 'package:news_using_clean_architecture/ui_design/presentation/page/home_screen_ui_design.dart';
 import 'package:news_using_clean_architecture/ui_design/presentation/widgets/members_container_widgets.dart';
+import 'package:news_using_clean_architecture/ui_design_second/presentation/pages/first_ui.dart';
 
 void main() {
   runApp(ProviderScope(child: const MyApp()));
@@ -75,6 +76,13 @@ class _MyAppState extends ConsumerState<MyApp> {
                 height: 18 / 14.h,
                 letterSpacing: -0.1.w,
               ),
+
+              //
+              displayMedium: GoogleFonts.poppins(
+                fontSize: 24.sp,
+                height: 30 / 30,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           //light theme ra dark theme yeha define gareko ho.
@@ -85,7 +93,8 @@ class _MyAppState extends ConsumerState<MyApp> {
                   ? ThemeMode.light
                   : ThemeMode.dark,
 
-          home: HomeScreenUiDesign(),
+          home: FirstUi(),
+          // HomeScreenUiDesign(),
         );
       },
     );
