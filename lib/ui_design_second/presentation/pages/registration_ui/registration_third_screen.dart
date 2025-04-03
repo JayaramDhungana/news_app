@@ -85,21 +85,11 @@ class RegistrationThirdScreen extends StatelessWidget {
           Spacer(),
           Padding(
             padding: const EdgeInsets.only(bottom: 50),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => RegistrationFourthScreen(),
-                  ),
-                );
-              },
-              child: LogInContainerWidget(
-                text: 'Verify Your Number',
-                color: Colors.grey,
-                textColor: Colors.white,
-                borderColor: Colors.grey,
-              ),
+            child: LogInContainerWidget(
+              text: 'Verify Your Number',
+              color: Colors.grey,
+              textColor: Colors.white,
+              borderColor: Colors.grey,
             ),
           ),
         ],

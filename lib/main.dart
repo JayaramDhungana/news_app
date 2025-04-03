@@ -11,6 +11,7 @@ import 'package:news_using_clean_architecture/features/feature_name/presentation
 import 'package:news_using_clean_architecture/ui_design/presentation/page/home_screen_ui_design.dart';
 import 'package:news_using_clean_architecture/ui_design/presentation/widgets/members_container_widgets.dart';
 import 'package:news_using_clean_architecture/ui_design_second/presentation/pages/first_ui.dart';
+import 'package:news_using_clean_architecture/ui_design_second/presentation/pages/focus_node_research.dart';
 import 'package:news_using_clean_architecture/ui_design_second/presentation/pages/home_screen_second_design.dart';
 
 void main() {
@@ -94,7 +95,9 @@ class _MyAppState extends ConsumerState<MyApp> {
                   ? ThemeMode.light
                   : ThemeMode.dark,
 
-          home: HomeScreenSecondDesign(),
+          home:
+              // FocusNodeResearch(),
+              HomeScreenSecondDesign(),
           // FirstUi(),
           // HomeScreenUiDesign(),
         );

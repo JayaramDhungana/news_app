@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_using_clean_architecture/ui_design_second/presentation/pages/registration_ui/registration_second_screen.dart';
 import 'package:news_using_clean_architecture/ui_design_second/presentation/provider/mobile_number_provider.dart';
 
 class DialogueWidget extends ConsumerWidget {
@@ -55,6 +56,14 @@ class DialogueWidget extends ConsumerWidget {
       ),
       children: [
         SimpleDialogOption(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => RegistrationSecondScreen(),
+              ),
+            );
+          },
           child: Container(
             height: 60,
             width: 40,

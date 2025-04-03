@@ -15,7 +15,7 @@ class ThirdUi extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(backgroundColor: Colors.white, toolbarHeight: 42.h),
       body: Padding(
-        padding: const EdgeInsets.only(top: 48),
+        padding: const EdgeInsets.only(top: 30),
         child: Container(
           color: Colors.white,
           height: 646.h,
@@ -62,17 +62,17 @@ class ThirdUi extends StatelessWidget {
                   ),
                 ),
               ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => RegistrationFirstScreen(),
-                    ),
-                  );
-                },
-                child: NextContainerWidget(),
-              ),
+              // InkWell(
+              //   onTap: () {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) => RegistrationFirstScreen(),
+              //       ),
+              //     );
+              //   },
+              //   child: NextContainerWidget(),
+              // ),
             ],
           ),
         ),

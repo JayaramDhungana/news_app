@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_using_clean_architecture/ui_design_second/presentation/pages/registration_ui/registration_fourth_screen.dart';
 import 'package:news_using_clean_architecture/ui_design_second/presentation/pages/registration_ui/registration_second_screen.dart';
 import 'package:news_using_clean_architecture/ui_design_second/presentation/widgets/log_in_container_widget.dart';
 import 'package:news_using_clean_architecture/ui_design_second/presentation/widgets/progress_container_widget.dart';
@@ -39,7 +40,7 @@ class RegistrationFirstScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => RegistrationSecondScreen(),
+                    builder: (context) => RegistrationFourthScreen(),
                   ),
                 );
               },

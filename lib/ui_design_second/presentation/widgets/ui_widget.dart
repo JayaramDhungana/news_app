@@ -7,7 +7,7 @@ import 'package:news_using_clean_architecture/ui_design_second/presentation/widg
 
 class UiWidget extends StatelessWidget {
   final AssetImage assetImage;
-  
+
   const UiWidget({super.key, required this.assetImage});
 
   @override
@@ -67,7 +67,7 @@ class UiWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              NextContainerWidget(),
+              NextContainerWidget(text: "Next",width: 360,),
             ],
           ),
         ),
