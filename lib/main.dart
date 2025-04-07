@@ -26,7 +26,6 @@ class MyApp extends ConsumerStatefulWidget {
 }
 
 class _MyAppState extends ConsumerState<MyApp> {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     final themeFromProvider = ref.watch(themeProvider);
