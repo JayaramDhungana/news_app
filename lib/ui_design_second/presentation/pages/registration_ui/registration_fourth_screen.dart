@@ -23,7 +23,8 @@ class _RegistrationFourthScreenState
       TextEditingController();
   String contrycode = '';
   var formKey = GlobalKey<FormState>();
-
+  var mobileFormKey = GlobalKey<FormFieldState>();
+  var passwordFormKey = GlobalKey<FormFieldState>();
 
   //Initializing Focus Node
   final mobileNumberFocusNode = FocusNode();
@@ -36,14 +37,14 @@ class _RegistrationFourthScreenState
     //mobileNumber ko
     mobileNumberFocusNode.addListener(() {
       if (!mobileNumberFocusNode.hasFocus) {
-        if (!formKey.currentState!.validate()) {
+        if (!mobileFormKey.currentState!.validate()) {
           return;
         }
       }
     });
     passwordFocusNode.addListener(() {
       if (!passwordFocusNode.hasFocus) {
-        if (!formKey.currentState!.validate()) {
+        if (!passwordFormKey.currentState!.validate()) {
           return;
         }
       }
@@ -134,6 +135,7 @@ class _RegistrationFourthScreenState
                   //Mobile Number ko TextField
                   Expanded(
                     child: TextFormField(
+                      key: mobileFormKey,
                       focusNode: mobileNumberFocusNode,
 
                       validator: (value) {
@@ -178,6 +180,7 @@ class _RegistrationFourthScreenState
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: TextFormField(
+                key: passwordFormKey,
                 focusNode: passwordFocusNode,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
