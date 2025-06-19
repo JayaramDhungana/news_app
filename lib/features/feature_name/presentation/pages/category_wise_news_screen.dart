@@ -77,10 +77,14 @@ class _CategoryWiseNewsScreenState
               children: [
                 Row(
                   children: [
-                    TextWidget(
-                      text: categoryWiseNewsDetails.name ?? "No Name",
-                      color: Colors.black,
-                      size: 12,
+                    SizedBox(
+                      width: 74,
+                      child: TextWidget(
+                        text: categoryWiseNewsDetails.name ?? "No Name",
+                        color: Colors.black,
+                        size: 12,
+                        isOverFlow: true,
+                      ),
                     ),
                     Spacer(),
                     FollowedOrNotWidget(
@@ -102,7 +106,7 @@ class _CategoryWiseNewsScreenState
             subtitle: Row(
               children: [
                 SizedBox(
-                  width: 90,
+                  width: 80,
                   child: TextWidget(
                     text: categoryWiseNewsDetails.author ?? "No Author",
                     color: Colors.black,

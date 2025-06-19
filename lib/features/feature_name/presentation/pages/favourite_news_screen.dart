@@ -71,11 +71,11 @@ class _FavouriteNewsScreenState extends ConsumerState<FavouriteNewsScreen> {
             subtitle: Row(
               children: [
                 SizedBox(
-                  width: 100,
+                  width: 60,
                   child: TextWidget(
                     text: favouriteNewsDetails.author!,
                     color: Colors.black,
-                    size: 15,
+                    size: 10,
                     isOverFlow: true,
                   ),
                 ),
@@ -85,7 +85,7 @@ class _FavouriteNewsScreenState extends ConsumerState<FavouriteNewsScreen> {
                   child: TextWidget(
                     text: favouriteNewsDetails.publishedAt!,
                     color: Colors.black,
-                    size: 15,
+                    size: 10,
                     maxlines: 1,
                   ),
                 ),

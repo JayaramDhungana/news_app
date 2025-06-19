@@ -228,7 +228,8 @@ class SharedPreferencesHelper {
 
   static Future<bool> showThemeData() async {
     final prefs = await SharedPreferences.getInstance();
-    final dataofTheme = prefs.getBool(keyForTheme);
-    return dataofTheme!;
+
+    final dataofTheme = false;
+    return dataofTheme;
   }
 }

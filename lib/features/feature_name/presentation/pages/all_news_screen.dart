@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/calculate_date_difference.dart';
 import 'package:news_using_clean_architecture/features/feature_name/presentation/widgets/followed_or_not_show.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -78,10 +79,14 @@ class _AllNewsScreenState extends ConsumerState<AllNewsScreen> {
               children: [
                 Row(
                   children: [
-                    TextWidget(
-                      text: allNewsDetails.name ?? "No Name",
-                      color: Colors.black,
-                      size: 13,
+                    SizedBox(
+                      width: 75,
+                      child: TextWidget(
+                        text: allNewsDetails.name ?? "No Name",
+                        color: Colors.black,
+                        size: 13,
+                        isOverFlow: true,
+                      ),
                     ),
                     Spacer(),
                     FollowedOrNotWidget(
@@ -94,6 +99,8 @@ class _AllNewsScreenState extends ConsumerState<AllNewsScreen> {
                   color: Colors.black,
                   size: 15,
                   isBold: true,
+                  maxlines: 2,
+                  isOverFlow: true,
                 ),
               ],
             ),
@@ -102,7 +109,7 @@ class _AllNewsScreenState extends ConsumerState<AllNewsScreen> {
             subtitle: Row(
               children: [
                 SizedBox(
-                  width: 100,
+                  width: 80,
 
                   child: TextWidget(
                     text: allNewsDetails.author ?? "No Author",

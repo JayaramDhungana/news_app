@@ -83,11 +83,14 @@ class _MoreDetailsNewsScreenState extends ConsumerState<MoreDetailsNewsScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TextWidget(
-                            text: widget.name ?? "No Name",
-                            color: Colors.black,
-                            size: 15,
-                            isBold: true,
+                          SizedBox(
+                            width: 150,
+                            child: TextWidget(
+                              text: widget.name ?? "No Name",
+                              color: Colors.black,
+                              size: 15,
+                              isBold: true,
+                            ),
                           ),
                           TextWidget(
                             text: widget.publishedAt ?? "No Published Date",
@@ -99,34 +102,36 @@ class _MoreDetailsNewsScreenState extends ConsumerState<MoreDetailsNewsScreen> {
                     ),
                     Spacer(),
                     //yadi source name aayena bhane kei pani nadekhaune
-                    isSourceNameNull?Text(""):InkWell(
-                      onTap: () {
-                        // Change the follow state when tapped
-                        ref
-                            .read(followProvider)
-                            .changeFollowAndFollowing(
-                              widget.name ?? "No Value",
-                            );
-                        debugPrint("pressed");
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        height: 40,
-                        width: 100,
-                        child: Center(
-                          child: TextWidget(
-                            text:
-                                textfromProvider, // Directly use the followText
-                            color: Colors.white,
-                            size: 20,
-                            isBold: true,
+                    isSourceNameNull
+                        ? Text("")
+                        : InkWell(
+                          onTap: () {
+                            // Change the follow state when tapped
+                            ref
+                                .read(followProvider)
+                                .changeFollowAndFollowing(
+                                  widget.name ?? "No Value",
+                                );
+                            debugPrint("pressed");
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            height: 40,
+                            width: 100,
+                            child: Center(
+                              child: TextWidget(
+                                text:
+                                    textfromProvider, // Directly use the followText
+                                color: Colors.white,
+                                size: 15,
+                                isBold: true,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
                   ],
                 ),
               ),
